@@ -2,8 +2,7 @@
 # Visit https://github.com/codeunion/text-analysis/wiki to see what to do.
 #
 # Send an email to your cohort mailing list if you have any questions
-# or you're stuck!  These comments are here to help you, but please delete them
-# as you go along. You wouldn't normally have such heavily-commented code.
+# or you're stuck!
 
 # Method name: item_counts
 # Input:   An arbitrary array
@@ -24,9 +23,13 @@
 # in the input array.
 
 def item_counts(array)
-  counts = {} # Initialize counts to an empty Hash
+	counts = Hash.new(0) # Count the array by creating a new Hash.
+	#the first fime we find the word, it will have a default value of 0
 
-  array.each do |item|
+  array.each do |item| #Iterate through each item in the array
+  	#for each item we find, assume that it's a key
+  	counts[item] = counts[item] + 1 #increment the item by 1
+
     # Add code here to modify the "counts" hash accordingly
     # You'll need to handle two cases:
     #   1. The first time we've seen a particular item in the array
@@ -38,14 +41,14 @@ end
 
 # "p" prints something to the screen in a way that's friendlier
 # for debugging purposes than print or puts.
-
-p item_counts([1,2,1,2,1]) == {1 => 3, 2 => 2}
-p item_counts(["a","b","a","b","a","ZZZ"]) == {"a" => 3, "b" => 2, "ZZZ" => 1}
-p item_counts([]) == {}
-p item_counts(["hi", "hi", "hi"]) == {"hi" => 3}
-p item_counts([true, nil, "dinosaur"]) == {true => 1, nil => 1, "dinosaur" => 1}
-p item_counts(["a","a","A","A"]) == {"a" => 2, "A" => 2}
-
+if __FILE__ == $0
+	p item_counts([1,2,1,2,1]) == {1 => 3, 2 => 2}
+	p item_counts(["a","b","a","b","a","ZZZ"]) == {"a" => 3, "b" => 2, "ZZZ" => 1}
+	p item_counts([]) == {}
+	p item_counts(["hi", "hi", "hi"]) == {"hi" => 3}
+	p item_counts([true, nil, "dinosaur"]) == {true => 1, nil => 1, "dinosaur" => 1}
+	p item_counts(["a","a","A","A"]) == {"a" => 2, "A" => 2}
+end
 # Each of the lines above will print out "true" or "false" and collectively
 # act as a sanity check.  Remember that conceptually "x == y"
 # means "are x and y equal?"
