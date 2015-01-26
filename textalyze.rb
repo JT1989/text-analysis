@@ -42,7 +42,7 @@ end
 #[v0.2] String to characters
 def letter_counts(string)
 	split_the_string = string.split(//) #take the string, return an array of characters
-	p item_counts(split_the_string) #feed this into the array counting method
+	result = item_counts(split_the_string) #feed this into the array counting method
 end
 
 # "p" prints something to the screen in a way that's friendlier
