@@ -39,16 +39,25 @@ def item_counts(array)
   counts # This returns the "counts" hash
 end
 
+#[v0.2] String to characters
+def letter_counts(string)
+	split_the_string = string.split(//) #take the string, return an array of characters
+	p item_counts(split_the_string) #feed this into the array counting method
+end
+
 # "p" prints something to the screen in a way that's friendlier
 # for debugging purposes than print or puts.
 if __FILE__ == $0
-	p item_counts([1,2,1,2,1]) == {1 => 3, 2 => 2}
-	p item_counts(["a","b","a","b","a","ZZZ"]) == {"a" => 3, "b" => 2, "ZZZ" => 1}
-	p item_counts([]) == {}
-	p item_counts(["hi", "hi", "hi"]) == {"hi" => 3}
-	p item_counts([true, nil, "dinosaur"]) == {true => 1, nil => 1, "dinosaur" => 1}
-	p item_counts(["a","a","A","A"]) == {"a" => 2, "A" => 2}
+	#p item_counts([1,2,1,2,1]) == {1 => 3, 2 => 2}
+	#p item_counts(["a","b","a","b","a","ZZZ"]) == {"a" => 3, "b" => 2, "ZZZ" => 1}
+	#p item_counts([]) == {}
+	#p item_counts(["hi", "hi", "hi"]) == {"hi" => 3}
+	#p item_counts([true, nil, "dinosaur"]) == {true => 1, nil => 1, "dinosaur" => 1}
+	#p item_counts(["a","a","A","A"]) == {"a" => 2, "A" => 2}
+	p letter_counts(["and"]) == {"a" => 1, "n" => 1, "d" => 1}
+	p letter_counts(["remember"])  == {"r" => 2, "e" => 3, "m" => 2, "b" => 1}
 end
+
 # Each of the lines above will print out "true" or "false" and collectively
 # act as a sanity check.  Remember that conceptually "x == y"
 # means "are x and y equal?"
