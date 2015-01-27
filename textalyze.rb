@@ -45,19 +45,32 @@ def string_to_characters(string)
   result = item_counts(split_the_string)  #feed this into the array counting method
 end
 
+#[v0.3] Basic String Sanitizing
+def sanitize(string)
+  downcase_string = string.downcase
+  result = string_to_characters(downcase_string) #returns a sanitized string
+end
+
 # "p" prints something to the screen in a way that's friendlier
 # for debugging purposes than print or puts.
 if __FILE__ == $0
-	p item_counts([1,2,1,2,1]) == {1 => 3, 2 => 2}
-	p item_counts(["a","b","a","b","a","ZZZ"]) == {"a" => 3, "b" => 2, "ZZZ" => 1}
-	p item_counts([]) == {}
-	p item_counts(["hi", "hi", "hi"]) == {"hi" => 3}
-	p item_counts([true, nil, "dinosaur"]) == {true => 1, nil => 1, "dinosaur" => 1}
-	p item_counts(["a","a","A","A"]) == {"a" => 2, "A" => 2}
+	#p item_counts([1,2,1,2,1]) == {1 => 3, 2 => 2}
+	#p item_counts(["a","b","a","b","a","ZZZ"]) == {"a" => 3, "b" => 2, "ZZZ" => 1}
+	#p item_counts([]) == {}
+	#p item_counts(["hi", "hi", "hi"]) == {"hi" => 3}
+	#p item_counts([true, nil, "dinosaur"]) == {true => 1, nil => 1, "dinosaur" => 1}
+	#p item_counts(["a","a","A","A"]) == {"a" => 2, "A" => 2}
 
-  p string_to_characters("and") == {"a" => 1, "n" => 1, "d" => 1}
-  p string_to_characters("remember") == {"r" => 2, "e" => 3, "m" => 2, "b" => 1}
+  #p string_to_characters("and") == {"a" => 1, "n" => 1, "d" => 1}
+  #p string_to_characters("remember") == {"r" => 2, "e" => 3, "m" => 2, "b" => 1}
+
+  p sanitize("ReMemBEr") == {"r" => 2, "e" => 3, "m" => 2, "b" => 1}
+  p sanitize("Dog iS slEepinG!") == {"d"=>1, "o"=>1, "g"=>2, " "=>2, "i"=>2, "s"=>2, "l"=>1, "e"=>2, "p"=>1, "n"=>1, "!"=>1}
 end
+
+
+# If we've reached this line of code, we know the user supplied us with at least
+# one command-line argument. We'll assume it's a file for us to read.
 
 # Each of the lines above will print out "true" or "false" and collectively
 # act as a sanity check.  Remember that conceptually "x == y"
