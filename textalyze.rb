@@ -51,6 +51,12 @@ def sanitize(string)
   result = string_to_characters(downcase_string) #returns a sanitized string
 end
 
+#[v0.4] Reading From a Hard-Coded File
+Great_Gatsby_contents = File.read("sample_data/great-gatsby.txt")
+Full_Moby_Dick_contents = File.read("sample_data/moby-dick.full.txt")
+Moby_Dick_contents = File.read("sample_data/moby-dick.txt")
+Tale_of_Two_Cities_contents = File.read("sample_data/tale-of-two-cities.txt")
+
 # "p" prints something to the screen in a way that's friendlier
 # for debugging purposes than print or puts.
 if __FILE__ == $0
@@ -64,8 +70,13 @@ if __FILE__ == $0
   #p string_to_characters("and") == {"a" => 1, "n" => 1, "d" => 1}
   #p string_to_characters("remember") == {"r" => 2, "e" => 3, "m" => 2, "b" => 1}
 
-  p sanitize("ReMemBEr") == {"r" => 2, "e" => 3, "m" => 2, "b" => 1}
-  p sanitize("Dog iS slEepinG!") == {"d"=>1, "o"=>1, "g"=>2, " "=>2, "i"=>2, "s"=>2, "l"=>1, "e"=>2, "p"=>1, "n"=>1, "!"=>1}
+  #p sanitize("ReMemBEr") == {"r" => 2, "e" => 3, "m" => 2, "b" => 1}
+  #p sanitize("Dog iS slEepinG!") == {"d"=>1, "o"=>1, "g"=>2, " "=>2, "i"=>2, "s"=>2, "l"=>1, "e"=>2, "p"=>1, "n"=>1, "!"=>1}
+
+  p item_counts(sanitize(Great_Gatsby_contents))
+  p item_counts(sanitize(Full_Moby_Dick_contents))
+  p item_counts(sanitize(Moby_Dick_contents))
+  p item_counts(sanitize(Tale_of_Two_Cities_contents))
 end
 
 
