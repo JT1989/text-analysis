@@ -22,14 +22,14 @@
 # In short, item_counts(array) tells us how many times each item appears
 # in the input array.
 
+#[v0.1] Basic count statistics
 def item_counts(array)
-	counts = Hash.new(0) # Count the array by creating a new Hash.
+  counts = Hash.new(0) #Count the array by creating a new hash
 	#the first fime we find the word, it will have a default value of 0
 
-  array.each do |item| #Iterate through each item in the array
+  array.each do |key| #Iterate through each "key" in the array
   	#for each item we find, assume that it's a key
-  	counts[item] = counts[item] + 1 #increment the item by 1
-
+  	counts[key] = counts[key] + 1 #increment the key by 1
     # Add code here to modify the "counts" hash accordingly
     # You'll need to handle two cases:
     #   1. The first time we've seen a particular item in the array
@@ -40,22 +40,23 @@ def item_counts(array)
 end
 
 #[v0.2] String to characters
-def letter_counts(string)
-	split_the_string = string.split(//) #take the string, return an array of characters
-	result = item_counts(split_the_string) #feed this into the array counting method
+def string_to_characters(string)
+  split_the_string = string.split(//)     #take the string, return an array of characters
+  result = item_counts(split_the_string)  #feed this into the array counting method
 end
 
 # "p" prints something to the screen in a way that's friendlier
 # for debugging purposes than print or puts.
 if __FILE__ == $0
-	#p item_counts([1,2,1,2,1]) == {1 => 3, 2 => 2}
-	#p item_counts(["a","b","a","b","a","ZZZ"]) == {"a" => 3, "b" => 2, "ZZZ" => 1}
-	#p item_counts([]) == {}
-	#p item_counts(["hi", "hi", "hi"]) == {"hi" => 3}
-	#p item_counts([true, nil, "dinosaur"]) == {true => 1, nil => 1, "dinosaur" => 1}
-	#p item_counts(["a","a","A","A"]) == {"a" => 2, "A" => 2}
-	p letter_counts(["and"]) == {"a" => 1, "n" => 1, "d" => 1}
-	p letter_counts(["remember"])  == {"r" => 2, "e" => 3, "m" => 2, "b" => 1}
+	p item_counts([1,2,1,2,1]) == {1 => 3, 2 => 2}
+	p item_counts(["a","b","a","b","a","ZZZ"]) == {"a" => 3, "b" => 2, "ZZZ" => 1}
+	p item_counts([]) == {}
+	p item_counts(["hi", "hi", "hi"]) == {"hi" => 3}
+	p item_counts([true, nil, "dinosaur"]) == {true => 1, nil => 1, "dinosaur" => 1}
+	p item_counts(["a","a","A","A"]) == {"a" => 2, "A" => 2}
+
+  p string_to_characters("and") == {"a" => 1, "n" => 1, "d" => 1}
+  p string_to_characters("remember") == {"r" => 2, "e" => 3, "m" => 2, "b" => 1}
 end
 
 # Each of the lines above will print out "true" or "false" and collectively
@@ -72,7 +73,3 @@ end
 #   3. Something else we haven't though of
 #
 # Remember: Option #3 is *always* possible.
-#
-# Think of these like rumble strips on the side of the road.  They're here
-# to tell you when you're veering off the road, not to guarantee you're
-# driving phenomenally. :)
