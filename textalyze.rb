@@ -52,10 +52,16 @@ def sanitize(string)
 end
 
 #[v0.4] Reading From a Hard-Coded File
-Great_Gatsby_contents = File.read("sample_data/great-gatsby.txt")
-Full_Moby_Dick_contents = File.read("sample_data/moby-dick.full.txt")
-Moby_Dick_contents = File.read("sample_data/moby-dick.txt")
-Tale_of_Two_Cities_contents = File.read("sample_data/tale-of-two-cities.txt")
+#content = File.read("sample_data/great-gatsby.txt")
+
+#[v1.0] Reading From a User-Supplied File
+if ARGV.size == 0
+  puts "Welcome! What is the filename that you want to anlayze?"
+  puts "For example, type: sample_data/great-gatsby.txt"
+  content = gets.chomp #removes the extra line
+else
+  content = ARGV[0]
+end
 
 # "p" prints something to the screen in a way that's friendlier
 # for debugging purposes than print or puts.
@@ -73,26 +79,11 @@ if __FILE__ == $0
   #p sanitize("ReMemBEr") == {"r" => 2, "e" => 3, "m" => 2, "b" => 1}
   #p sanitize("Dog iS slEepinG!") == {"d"=>1, "o"=>1, "g"=>2, " "=>2, "i"=>2, "s"=>2, "l"=>1, "e"=>2, "p"=>1, "n"=>1, "!"=>1}
 
-  p item_counts(sanitize(Great_Gatsby_contents))
-  p item_counts(sanitize(Full_Moby_Dick_contents))
-  p item_counts(sanitize(Moby_Dick_contents))
-  p item_counts(sanitize(Tale_of_Two_Cities_contents))
+  p item_counts(sanitize(content))
 end
 
 
-# If we've reached this line of code, we know the user supplied us with at least
-# one command-line argument. We'll assume it's a file for us to read.
 
-# Each of the lines above will print out "true" or "false" and collectively
-# act as a sanity check.  Remember that conceptually "x == y"
-# means "are x and y equal?"
-#
-# That is, when you run the code, if any lines print out "false"
-# then you know something is off in your code.
-#
-# This does *not* mean that your code is perfect if each line
-# prints out "true.""  For example,
-#   1. We might have missed a corner case
 #   2. The code does what it should, but is conceptually confused
 #   3. Something else we haven't though of
 #
