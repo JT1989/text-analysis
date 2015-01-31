@@ -55,24 +55,35 @@ end
 #content = File.read("sample_data/great-gatsby.txt")
 
 #[v1.0] Reading From a User-Supplied File
-#if ARGV.size == 0
-#  puts "Welcome! What is the filename that you want to anlayze?"
+# if ARGV.size == 0
+#   puts "Welcome! What is the filename that you want to anlayze?"
 #  puts "For example, type: sample_data/great-gatsby.txt"
 #  content = gets.chomp #removes the extra line
-#else
+# else
 #  content = ARGV[0]
-#end
+# end
 
 #[v1.1] Basic Frequency Statistics
-def calculate_percentage(array) #calculates % of each item in an array
-  calculate_percentage = item_counts(array.map(&:downcase)) #{"a"=>3, "b"=>2, "ZZZ"=>1}
+# def calculate_percentage(array) #calculates % of each item in an array
+#   calculate_percentage = item_counts(array.map(&:downcase)) #{"a"=>3, "b"=>2, "ZZZ"=>1}
 
-  calculate_percentage.each do |key, value| # do |"a", 2|
-    calculate_percentage[key] = value.to_f/array.length.to_f #for "a" = 2.00/6.00
+#   calculate_percentage.each do |key, value| # do |"a", 2|
+#     calculate_percentage[key] = value.to_f/array.length.to_f #for "a" = 2.00/6.00
+#   end
+
+#   calculate_percentage #return "a" => 0.333 #returns a hash containing item and frequency
+# end
+
+def calculate_percentage(string)
+  characters = sanitize(string) #take a string, sanitize it
+  character_count = characters.length # count total length of string
+  frequency = item_counts(characters) #count number of times each character shows
+  frequency.each do |character, count|
+    frequency[character] = count.to_f/character_count #take percentage
   end
-
-  calculate_percentage #return "a" => 0.333 #returns a hash containing item and frequency
 end
+
+#[v1.2] Pretty Histograms
 
 if __FILE__ == $0
 	#p item_counts([1,2,1,2,1]) == {1 => 3, 2 => 2}
@@ -91,5 +102,7 @@ if __FILE__ == $0
 
   #p item_counts(sanitize(content))
 
-  p calculate_percentage(["a","b","A","b","a","ZZZ"]) == {"a"=>0.5, "b"=>0.3333333333333333, "zzz"=>0.16666666666666666}
+  p calculate_percentage("Aand")
+
+  #p histogram("Aand")
 end
