@@ -68,25 +68,25 @@ else
   contents = File.read(ARGV[0])
 end
 
-# # [v1.1] Basic Frequency Statistics
-# def calculate_percentage(string) #def calculate_percentage("Aand")
-#   characters = sanitize(string) #characters = sanitize("Aand") --> {"a" => 2, "n" => 1, "d" => 1}
-#   characters.each do |letter, count|  #|a, 2| |n, 1| |d,2|
-#     characters[letter] = count.to_f/string.length # 2/4   1/4   1/4
-#   end
-# end
+# [v1.1] Basic Frequency Statistics
+def calculate_percentage(string) #def calculate_percentage("Aand")
+  characters = sanitize(string) #characters = sanitize("Aand") --> {"a" => 2, "n" => 1, "d" => 1}
+  characters.each do |letter, count|  #|a, 2| |n, 1| |d,2|
+    characters[letter] = count.to_f/string.length # 2/4   1/4   1/4
+  end
+end
 
-# # [v1.2] Pretty Histograms
-# def histogram(string)
-#   calculated_percentage = calculate_percentage(string)
+# [v1.2] Pretty Histograms
+def histogram(string)
+  calculated_percentage = calculate_percentage(string)
 
-#   calculated_percentage.each do |character, percentage|
-#     bar_chart = percentage * 200
-#     bar = "=" * bar_chart
-#     percentage = percentage.round(2) * 100
-#     puts "#{character} #{percentage}% #{bar}"
-#   end
-# end
+  calculated_percentage.each do |character, percentage|
+    bar_chart = percentage * 100
+    bar = "=" * bar_chart
+    percentage = percentage.round(2) * 100
+    puts "#{character} #{percentage}% #{bar}"
+  end
+end
 
 if __FILE__ == $0
 	#p item_counts([1,2,1,2,1]) == {1 => 3, 2 => 2}
@@ -104,10 +104,10 @@ if __FILE__ == $0
   #p sanitize("Dog iS slEepinG!") == {"d"=>1, "o"=>1, "g"=>2, " "=>2, "i"=>2, "s"=>2, "l"=>1, "e"=>2, "p"=>1, "n"=>1, "!"=>1}
 
   #v0.4 and 1.0
-  p item_counts(sanitize(contents))
+  #p item_counts(sanitize(contents))
 
   # p calculate_percentage("Aand") == {"a"=>0.5, "n"=>0.25, "d"=>0.25}
-  # p histogram("Aand") == {"a"=>0.5, "n"=>0.25, "d"=>0.25}
+  p histogram("Aand") == {"a"=>0.5, "n"=>0.25, "d"=>0.25}
 
-  # p histogram(contents)
+  p histogram(contents)
 end
