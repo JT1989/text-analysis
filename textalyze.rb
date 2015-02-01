@@ -47,7 +47,7 @@ end
 
 #[v0.3] Basic String Sanitizing
 def sanitize(string)
-  downcase_string = string.downcase
+  downcase_string = string.chars.sort.join.downcase
   result = string_to_characters(downcase_string) #returns a sanitized string
 end
 
@@ -84,7 +84,7 @@ def histogram(string)
     bar_chart = percentage * 100
     bar = "=" * bar_chart
     percentage = percentage.round(2) * 100
-    puts "#{character} #{percentage}% #{bar}"
+    puts "#{character} [#{percentage}%] #{bar}"
   end
 end
 
@@ -107,7 +107,7 @@ if __FILE__ == $0
   #p item_counts(sanitize(contents))
 
   # p calculate_percentage("Aand") == {"a"=>0.5, "n"=>0.25, "d"=>0.25}
-  p histogram("Aand") == {"a"=>0.5, "n"=>0.25, "d"=>0.25}
+  # p histogram("Aand") == {"a"=>0.5, "n"=>0.25, "d"=>0.25}
 
   p histogram(contents)
 end
