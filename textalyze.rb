@@ -52,38 +52,41 @@ def sanitize(string)
 end
 
 #[v0.4] Reading From a Hard-Coded File
-#content = File.read("sample_data/great-gatsby.txt")
+#file_contents = File.read("sample_data/moby-dick.txt")
+#contents = File.read('sample_data/great-gatsby.txt')
+# moby_dick_full = File.read('sample_data/moby-dick.full.txt')
+# moby_dick = File.read('sample_data/moby-dick.txt')
+# tale_of_two_cities = File.read('sample_data/tale-of-two-cities.txt')
 
 #[v1.0] Reading From a User-Supplied File
-# if ARGV.size == 0
-#   puts "Welcome! What is the filename that you want to anlayze?"
-#  puts "For example, type: sample_data/great-gatsby.txt"
-#  content = gets.chomp #removes the extra line
-# else
-#  content = ARGV[0]
-# end
-
-#[v1.1] Basic Frequency Statistics
-# def calculate_percentage(array) #calculates % of each item in an array
-#   calculate_percentage = item_counts(array.map(&:downcase)) #{"a"=>3, "b"=>2, "ZZZ"=>1}
-
-#   calculate_percentage.each do |key, value| # do |"a", 2|
-#     calculate_percentage[key] = value.to_f/array.length.to_f #for "a" = 2.00/6.00
-#   end
-
-#   calculate_percentage #return "a" => 0.333 #returns a hash containing item and frequency
-# end
-
-def calculate_percentage(string)
-  characters = sanitize(string) #take a string, sanitize it
-  character_count = characters.length # count total length of string
-  frequency = item_counts(characters) #count number of times each character shows
-  frequency.each do |character, count|
-    frequency[character] = count.to_f/character_count #take percentage
-  end
+if ARGV.size == 0
+  puts "Welcome! What is the filename that you want to anlayze?"
+  puts "For example, type: sample_data/great-gatsby.txt"
+  file_name = gets.chomp
+  contents = File.read(file_name)
+else
+  contents = File.read(ARGV[0])
 end
 
-#[v1.2] Pretty Histograms
+# # [v1.1] Basic Frequency Statistics
+# def calculate_percentage(string) #def calculate_percentage("Aand")
+#   characters = sanitize(string) #characters = sanitize("Aand") --> {"a" => 2, "n" => 1, "d" => 1}
+#   characters.each do |letter, count|  #|a, 2| |n, 1| |d,2|
+#     characters[letter] = count.to_f/string.length # 2/4   1/4   1/4
+#   end
+# end
+
+# # [v1.2] Pretty Histograms
+# def histogram(string)
+#   calculated_percentage = calculate_percentage(string)
+
+#   calculated_percentage.each do |character, percentage|
+#     bar_chart = percentage * 200
+#     bar = "=" * bar_chart
+#     percentage = percentage.round(2) * 100
+#     puts "#{character} #{percentage}% #{bar}"
+#   end
+# end
 
 if __FILE__ == $0
 	#p item_counts([1,2,1,2,1]) == {1 => 3, 2 => 2}
@@ -100,9 +103,11 @@ if __FILE__ == $0
   #p sanitize("ReMemBEr") == {"r" => 2, "e" => 3, "m" => 2, "b" => 1}
   #p sanitize("Dog iS slEepinG!") == {"d"=>1, "o"=>1, "g"=>2, " "=>2, "i"=>2, "s"=>2, "l"=>1, "e"=>2, "p"=>1, "n"=>1, "!"=>1}
 
-  #p item_counts(sanitize(content))
+  #v0.4 and 1.0
+  p item_counts(sanitize(contents))
 
-  p calculate_percentage("Aand")
+  # p calculate_percentage("Aand") == {"a"=>0.5, "n"=>0.25, "d"=>0.25}
+  # p histogram("Aand") == {"a"=>0.5, "n"=>0.25, "d"=>0.25}
 
-  #p histogram("Aand")
+  # p histogram(contents)
 end
